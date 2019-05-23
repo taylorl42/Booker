@@ -149,6 +149,10 @@
     <Compile Include="Migrations\201905232037286_ChangedModelsAddedJunctionModel.Designer.cs">
       <DependentUpon>201905232037286_ChangedModelsAddedJunctionModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905232236527_AddedJunctionModel.cs" />
+    <Compile Include="Migrations\201905232236527_AddedJunctionModel.Designer.cs">
+      <DependentUpon>201905232236527_AddedJunctionModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Book.cs" />
@@ -193,6 +197,7 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -219,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905232037286_ChangedModelsAddedJunctionModel.resx">
       <DependentUpon>201905232037286_ChangedModelsAddedJunctionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905232236527_AddedJunctionModel.resx">
+      <DependentUpon>201905232236527_AddedJunctionModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

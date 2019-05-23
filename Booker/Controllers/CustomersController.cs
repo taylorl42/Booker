@@ -89,7 +89,7 @@ namespace Booker.Controllers
 
             var viewModel = new CustomerFormViewModel
             {
-                Customer = new Customer()
+                Customer = customer
             };
 
             return View("CustomerForm", viewModel);
