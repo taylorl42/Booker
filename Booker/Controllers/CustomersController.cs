@@ -69,6 +69,24 @@ namespace Booker.Controllers
             return RedirectToAction("Index", "Customers");
         }
 
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            
+            if (id > 0)
+            {
+                var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+                _context.Customers.Remove(customerInDb);
+                _context.SaveChanges();
+            }
+            
+            
+            return RedirectToAction("Index", "Customers");
+            
+        }
+
+
         public ActionResult Details(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -94,5 +112,7 @@ namespace Booker.Controllers
 
             return View("CustomerForm", viewModel);
         }
+
+
     }
 }

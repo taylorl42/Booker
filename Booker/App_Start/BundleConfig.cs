@@ -23,7 +23,7 @@ namespace Booker
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-cerulean.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }
