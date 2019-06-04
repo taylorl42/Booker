@@ -32,6 +32,14 @@ namespace Booker.Controllers
 
         public ActionResult New()
         {
+            ViewBag.Years = new SelectList(Enumerable.Range(DateTime.Today.Year - 100, 101).Select(x =>
+
+           new SelectListItem()
+           {
+               Text = x.ToString(),
+               Value = x.ToString()
+           }), "Value", "Text");
+
             var viewModel = new BookFormViewModel
             {
                 Book = new Book()
@@ -104,6 +112,16 @@ namespace Booker.Controllers
 
         public ActionResult Edit(int id)
         {
+
+            ViewBag.Years = new SelectList(Enumerable.Range(DateTime.Today.Year - 100, 101).Select(x =>
+
+           new SelectListItem()
+           {
+               Text = x.ToString(),
+               Value = x.ToString()
+           }), "Value", "Text");
+
+
             var book = _context.Books.SingleOrDefault(c => c.Id == id);
 
             if (book == null)
