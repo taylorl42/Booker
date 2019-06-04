@@ -164,6 +164,18 @@
     <Compile Include="Migrations\201906041706078_AddedDataAnnotations.Designer.cs">
       <DependentUpon>201906041706078_AddedDataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906041727596_AddedISBNToBookModel.cs" />
+    <Compile Include="Migrations\201906041727596_AddedISBNToBookModel.Designer.cs">
+      <DependentUpon>201906041727596_AddedISBNToBookModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906041732501_RemovedISBNFromBookModel.cs" />
+    <Compile Include="Migrations\201906041732501_RemovedISBNFromBookModel.Designer.cs">
+      <DependentUpon>201906041732501_RemovedISBNFromBookModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906041809443_PopulateBooks.cs" />
+    <Compile Include="Migrations\201906041809443_PopulateBooks.Designer.cs">
+      <DependentUpon>201906041809443_PopulateBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Book.cs" />
@@ -279,6 +291,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906041706078_AddedDataAnnotations.resx">
       <DependentUpon>201906041706078_AddedDataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906041727596_AddedISBNToBookModel.resx">
+      <DependentUpon>201906041727596_AddedISBNToBookModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906041732501_RemovedISBNFromBookModel.resx">
+      <DependentUpon>201906041732501_RemovedISBNFromBookModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906041809443_PopulateBooks.resx">
+      <DependentUpon>201906041809443_PopulateBooks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
