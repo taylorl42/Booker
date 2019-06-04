@@ -11,10 +11,10 @@
 }
 else
 {
-    <h2>New Customer</h2>
+    <h2>New Book</h2>
 }
 
-@using (Html.BeginForm("Save", "Customers"))
+@using (Html.BeginForm("Save", "Books"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Book.Title)
@@ -28,7 +28,7 @@ else
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Book.YearOfPublication)
-        @Html.DropDownListFor(m => m.Book.YearOfPublication, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
+        @Html.DropDownListFor(m => m.Book.YearOfPublication, (IEnumerable<SelectListItem>)ViewBag.Years, "Year", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Book.YearOfPublication)
     </div>
 
@@ -42,7 +42,7 @@ else
 {
     <br />
 
-    using (Html.BeginForm("Delete/" + Model.Book.Id, "Customers"))
+    using (Html.BeginForm("Delete/" + Model.Book.Id, "Books"))
     {
         @Html.HiddenFor(m => m.Book.Id)
         <button type="submit" formmethod="post" class="btn btn-danger">Delete</button>

@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201905311704090_ChangedBookNames.Designer.cs">
       <DependentUpon>201905311704090_ChangedBookNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906041706078_AddedDataAnnotations.cs" />
+    <Compile Include="Migrations\201906041706078_AddedDataAnnotations.Designer.cs">
+      <DependentUpon>201906041706078_AddedDataAnnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Book.cs" />
@@ -272,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311704090_ChangedBookNames.resx">
       <DependentUpon>201905311704090_ChangedBookNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906041706078_AddedDataAnnotations.resx">
+      <DependentUpon>201906041706078_AddedDataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
