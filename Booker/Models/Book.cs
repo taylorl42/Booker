@@ -9,9 +9,9 @@ namespace Booker.Models
     {
         public int Id { get; set; }
 
-        public string BookName { get; set; }
+        public string Title { get; set; }
 
-        public string BookAuthor { get; set; }
+        public string Author { get; set; }
 
         public int YearOfPublication { get; set; }
 

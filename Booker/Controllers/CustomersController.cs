@@ -66,7 +66,7 @@ namespace Booker.Controllers
             }
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Customers");
+            return RedirectToAction("Details/" + customer.Id, "Customers");
         }
 
         [HttpPost]

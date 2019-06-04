@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,12 +156,17 @@
     <Compile Include="Migrations\201905232236527_AddedJunctionModel.Designer.cs">
       <DependentUpon>201905232236527_AddedJunctionModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905311704090_ChangedBookNames.cs" />
+    <Compile Include="Migrations\201905311704090_ChangedBookNames.Designer.cs">
+      <DependentUpon>201905311704090_ChangedBookNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerBooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BookFormViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +245,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Books\BookForm.cshtml" />
+    <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -260,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905232236527_AddedJunctionModel.resx">
       <DependentUpon>201905232236527_AddedJunctionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311704090_ChangedBookNames.resx">
+      <DependentUpon>201905311704090_ChangedBookNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

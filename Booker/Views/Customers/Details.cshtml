@@ -7,3 +7,12 @@
 
 <h2>@Model.Name</h2>
 
+
+@using (Html.BeginForm("Edit/" + Model.Id, "Customers"))
+{
+    <button type="submit" class="btn btn-primary">Edit</button>
+}
+
+<br/>
+
+<a class="btn btn-primary" href="~/Customers/Index" role="button">Return</a>
