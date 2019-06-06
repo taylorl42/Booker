@@ -91,10 +91,22 @@ namespace Booker.Controllers
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
+            var books = (from s in _context.Books
+                         join sa in _context.CustomerBooks on s.Id equals sa.BookId
+                         where sa.CustomerId == customer.Id
+                         select s);
+
+
+            var viewModel = new CustomerBooksViewModel
+            {
+                Customer = customer,
+                Books = books
+            };
+
             if (customer == null)
                 return HttpNotFound();
-
-            return View(customer);
+            
+            return View(viewModel);
         }
 
 
@@ -113,6 +125,18 @@ namespace Booker.Controllers
             return View("CustomerForm", viewModel);
         }
 
+
+        public ActionResult Browse(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            Session.Add("Customer", id);
+
+            return RedirectToAction("Index", "Books");
+        }
 
     }
 }

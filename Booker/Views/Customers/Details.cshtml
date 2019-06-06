@@ -1,18 +1,40 @@
-﻿@model Booker.Models.Customer
+﻿@model Booker.ViewModels.CustomerBooksViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
+<h2>@Model.Customer.Name</h2>
 
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Books Renting</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var book in Model.Books)
+        {
+            <tr>
+                <td>@Html.ActionLink((String)book.Title, "Details", "Books", new { id = book.Id }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-@using (Html.BeginForm("Edit/" + Model.Id, "Customers"))
+@using (Html.BeginForm("Edit/" + Model.Customer.Id, "Customers"))
 {
     <button type="submit" class="btn btn-primary">Edit</button>
 }
 
-<br/>
+<br />
+
+@using (Html.BeginForm("Browse/" + Model.Customer.Id, "Customers"))
+{
+<button type="submit" class="btn btn-primary">Rent A Book</button>
+}
+
+<br />
 
 <a class="btn btn-primary" href="~/Customers/Index" role="button">Return</a>

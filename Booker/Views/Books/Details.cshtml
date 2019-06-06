@@ -1,6 +1,8 @@
 ﻿@model Booker.Models.Book
 
 @{
+    /**/
+
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,11 +11,31 @@
 
 <li>Author: @Model.Author</li>
 <li>Year Published: @Model.YearOfPublication</li>
+<li>
+    Number In Stock: @Model.NumberInStock
+    (@Model.NumberRented)
+</li>
 
-@using (Html.BeginForm("Edit/" + Model.Id, "Books"))
+
+@if (Session["Customer"] != null)
 {
-    <button type="submit" class="btn btn-primary">Edit</button>
+
+    using (Html.BeginForm("AddCustomerBook/" + Model.Id, "Books"))
+    {
+        <button type="submit" class="btn btn-primary">Add To Library</button>
+    }
 }
+else
+{
+    using (Html.BeginForm("Edit/" + Model.Id, "Books"))
+    {
+        <button type="submit" class="btn btn-primary">Edit</button>
+    }
+}
+
+<br />
+
+
 
 <br />
 

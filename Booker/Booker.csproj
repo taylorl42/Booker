@@ -183,6 +183,7 @@
     <Compile Include="Models\CustomerBooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookFormViewModel.cs" />
+    <Compile Include="ViewModels\CustomerBooksViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,7 @@ namespace Booker.Controllers
 
         public ViewResult Index()
         {
+
             var books = _context.Books.ToList();
 
             return View(books);
@@ -135,5 +136,39 @@ namespace Booker.Controllers
             return View("BookForm", viewModel);
         }
 
+        public ActionResult Return()
+        {
+            Session.Abandon();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult AddCustomerBook(int id)
+        {
+
+            var book = _context.Books.SingleOrDefault(c => c.Id == id);
+
+            if (id > 0 && book.NumberInStock > 0)
+            {
+                var model = new CustomerBooks()
+                {
+                    BookId = id,
+                    CustomerId = Convert.ToInt32(Session["Customer"])
+                };
+
+                book.NumberInStock--;
+                book.NumberRented++;
+
+                _context.CustomerBooks.Add(model);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+                
+        }
     }
 }
