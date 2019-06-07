@@ -77,6 +77,12 @@ namespace Booker.Controllers
             {
                 var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
+                var books = (from cb in _context.CustomerBooks
+                             join b in _context.Books on cb.BookId equals b.Id
+                             where cb.CustomerId == customerInDb.Id
+                             select cb);
+
+                _context.CustomerBooks.RemoveRange(books);
                 _context.Customers.Remove(customerInDb);
                 _context.SaveChanges();
             }
@@ -91,10 +97,10 @@ namespace Booker.Controllers
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            var books = (from s in _context.Books
-                         join sa in _context.CustomerBooks on s.Id equals sa.BookId
-                         where sa.CustomerId == customer.Id
-                         select s);
+            var books = (from b in _context.Books
+                         join cb in _context.CustomerBooks on b.Id equals cb.BookId
+                         where cb.CustomerId == customer.Id
+                         select b);
 
 
             var viewModel = new CustomerBooksViewModel
@@ -138,5 +144,22 @@ namespace Booker.Controllers
             return RedirectToAction("Index", "Books");
         }
 
+
+        public ActionResult ReturnBook(int id)
+        {
+            if (id > 0)
+            {
+                var cBookInDb = _context.CustomerBooks.SingleOrDefault(c => c.Id == id);
+                var book = _context.Books.SingleOrDefault(c => c.Id == cBookInDb.BookId);
+
+                _context.CustomerBooks.Remove(cBookInDb);
+                _context.SaveChanges();
+
+                book.NumberInStock++;
+                book.NumberRented--;
+            }
+
+            return new EmptyResult();
+        }
     }
 }
