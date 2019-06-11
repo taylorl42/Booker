@@ -27,6 +27,8 @@ namespace Booker.Controllers
         {
             var customers = _context.Customers.ToList();
 
+            Session.Remove("Customer");
+
             return View(customers);
         }
 
@@ -82,6 +84,14 @@ namespace Booker.Controllers
                              where cb.CustomerId == customerInDb.Id
                              select cb);
 
+                foreach(var cbook in books)
+                {
+                    var book = _context.Books.SingleOrDefault(c => c.Id == cbook.BookId);
+
+                    book.NumberInStock++;
+                    book.NumberRented--;
+                }
+
                 _context.CustomerBooks.RemoveRange(books);
                 _context.Customers.Remove(customerInDb);
                 _context.SaveChanges();
@@ -102,6 +112,7 @@ namespace Booker.Controllers
                          where cb.CustomerId == customer.Id
                          select b);
 
+            Session.Add("Customer", id);
 
             var viewModel = new CustomerBooksViewModel
             {
@@ -144,22 +155,7 @@ namespace Booker.Controllers
             return RedirectToAction("Index", "Books");
         }
 
+        
 
-        public ActionResult ReturnBook(int id)
-        {
-            if (id > 0)
-            {
-                var cBookInDb = _context.CustomerBooks.SingleOrDefault(c => c.Id == id);
-                var book = _context.Books.SingleOrDefault(c => c.Id == cBookInDb.BookId);
-
-                _context.CustomerBooks.Remove(cBookInDb);
-                _context.SaveChanges();
-
-                book.NumberInStock++;
-                book.NumberRented--;
-            }
-
-            return new EmptyResult();
-        }
     }
 }

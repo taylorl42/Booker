@@ -1,4 +1,4 @@
-﻿@model Booker.Models.Book
+﻿@model Booker.ViewModels.BookCustomerViewModel
 
 @{
     /**/
@@ -7,27 +7,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Title</h2>
+<h2>@Model.Book.Title</h2>
 
-<li>Author: @Model.Author</li>
-<li>Year Published: @Model.YearOfPublication</li>
+<li>Author: @Model.Book.Author</li>
+<li>Year Published: @Model.Book.YearOfPublication</li>
 <li>
-    Number In Stock: @Model.NumberInStock
-    (@Model.NumberRented)
+    Number In Stock: @Model.Book.NumberInStock
+    (@Model.Book.NumberRented)
 </li>
 
 
 @if (Session["Customer"] != null)
 {
-
-    using (Html.BeginForm("AddCustomerBook/" + Model.Id, "Books"))
+    if (!Model.RentedBySession)
     {
-        <button type="submit" class="btn btn-primary">Add To Library</button>
+        using (Html.BeginForm("AddCustomerBook/" + Model.Book.Id, "Books"))
+        {
+            <button type="submit" class="btn btn-primary">Add To Library</button>
+        }
+
+    <br />
+    } else {
+        using (Html.BeginForm("ReturnBook/" + Model.Book.Id, "Books"))
+        {
+            <button type="submit" class="btn btn-warning">Return Book</button>
+        }
     }
 }
 else
 {
-    using (Html.BeginForm("Edit/" + Model.Id, "Books"))
+    using (Html.BeginForm("Edit/" + Model.Book.Id, "Books"))
     {
         <button type="submit" class="btn btn-primary">Edit</button>
     }

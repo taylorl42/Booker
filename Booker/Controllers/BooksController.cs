@@ -102,12 +102,43 @@ namespace Booker.Controllers
 
         public ActionResult Details(int id)
         {
-            var book = _context.Books.SingleOrDefault(c => c.Id == id);
 
-            if (book == null)
-                return HttpNotFound();
 
-            return View(book);
+            if (Session["Customer"] != null) {
+                int customerId = Convert.ToInt32(Session["Customer"]);
+                var cBook = _context.CustomerBooks.SingleOrDefault(c => c.BookId == id && c.CustomerId == customerId);
+
+                bool rentedBySession;
+
+                if (cBook != null)
+                    rentedBySession = true;
+                else
+                    rentedBySession = false;
+
+                var viewModel = new BookCustomerViewModel
+                {
+                    Book = _context.Books.SingleOrDefault(c => c.Id == id),
+                    RentedBySession = rentedBySession
+                };
+
+                if (viewModel.Book == null)
+                    return HttpNotFound();
+
+                return View(viewModel);
+            }
+            else
+            {
+                var viewModel = new BookCustomerViewModel
+                {
+                    Book = _context.Books.SingleOrDefault(c => c.Id == id),
+                    RentedBySession = false
+                };
+                if (viewModel.Book == null)
+                    return HttpNotFound();
+
+                return View(viewModel);
+            }
+            
         }
 
 
@@ -169,6 +200,28 @@ namespace Booker.Controllers
                 return HttpNotFound();
             }
                 
+        }
+        public ActionResult ReturnBook(int id)
+        {
+            if (id > 0 && Session["Customer"] != null)
+            {
+                var book = _context.Books.SingleOrDefault(c => c.Id == id);
+
+                int customerId = Convert.ToInt32(Session["Customer"]);
+                var cBook = _context.CustomerBooks.SingleOrDefault(c => c.BookId == id && c.CustomerId == customerId);
+
+
+                book.NumberInStock++;
+                book.NumberRented--;
+
+                _context.CustomerBooks.Remove(cBook);
+                _context.SaveChanges();
+
+
+                return RedirectToAction("Index", "Books");
+            }
+
+            return HttpNotFound();
         }
     }
 }
