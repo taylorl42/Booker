@@ -9,13 +9,23 @@
 
 <h2>@Model.Book.Title</h2>
 
-<li>Author: @Model.Book.Author</li>
-<li>Year Published: @Model.Book.YearOfPublication</li>
-<li>
-    Number In Stock: @Model.Book.NumberInStock
-    (@Model.Book.NumberRented)
-</li>
-
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Year Published</th>
+            <th>Number In Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Book.Author</td>
+            <td>@Model.Book.YearOfPublication</td>
+            <td>@Model.Book.NumberInStock
+                        (@Model.Book.NumberRented)</td>
+        </tr>
+    </tbody>
+</table>
 
 @if (Session["Customer"] != null)
 {
@@ -41,10 +51,6 @@ else
         <button type="submit" class="btn btn-primary">Edit</button>
     }
 }
-
-<br />
-
-
 
 <br />
 

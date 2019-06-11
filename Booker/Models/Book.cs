@@ -20,8 +20,10 @@ namespace Booker.Models
 
         [Required]
         [Range(1900, 2019)]
+        [Display(Name = "Year Published")]
         public int YearOfPublication { get; set; }
 
+        [Display(Name = "Number In Stock")]
         public int NumberInStock { get; set; }
 
         public int NumberRented { get; set; }
