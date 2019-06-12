@@ -5,9 +5,14 @@ Features:
 
 CRUD -
 User can add new books and customers to the database with validation
+
 View all customers, books and their details
+
 Can edit and update each object
+
 Can Delete each object
+
+
 
 
 Customers select and add books to their personal library, and can return them when no longer needed.
